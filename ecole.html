@@ -1,0 +1,676 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>L'école | Mawahib Al-Manan</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #071a13;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 7%;
+
+            background: rgba(7, 26, 19, 0.92);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #d9b85b;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #d9b85b;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 65vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 130px 20px 80px;
+
+            position: relative;
+
+            background:
+                radial-gradient(circle at 50% 20%, #164b35, transparent 45%),
+                #071a13;
+
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "✦";
+            position: absolute;
+            top: 130px;
+            left: 15%;
+            color: #d9b85b;
+            font-size: 30px;
+            animation: float 3s infinite;
+        }
+
+        .hero::after {
+            content: "✧";
+            position: absolute;
+            bottom: 70px;
+            right: 15%;
+            color: #d9b85b;
+            font-size: 40px;
+            animation: float 4s infinite;
+        }
+
+        @keyframes float {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .arabic {
+            color: #d9b85b;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 75px);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d9b85b;
+        }
+
+        .hero p {
+            color: #c7d3cd;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           PRESENTATION
+        ========================= */
+
+        .section {
+            padding: 90px 8%;
+            background: #f5f1e8;
+            color: #123b29;
+        }
+
+        .section-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 span {
+            color: #b18c35;
+        }
+
+        .section p {
+            color: #59665e;
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           CARDS
+        ========================= */
+
+        .cards {
+            margin-top: 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+
+            padding: 35px 25px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.08);
+
+            border-bottom: 5px solid #d9b85b;
+
+            transition: 0.3s;
+
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #17613f;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .card p {
+            font-size: 15px;
+            margin: 0;
+        }
+
+
+        /* =========================
+           VALEURS
+        ========================= */
+
+        .values {
+            margin-top: 60px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .value {
+            background: #123b29;
+            color: white;
+
+            padding: 25px;
+
+            border-radius: 20px;
+
+            transition: 0.3s;
+        }
+
+        .value:hover {
+            transform: translateX(5px);
+        }
+
+        .value h3 {
+            color: #d9b85b;
+            margin-bottom: 10px;
+        }
+
+        .value p {
+            color: #d5ded8;
+            margin: 0;
+        }
+
+
+        /* =========================
+           BOUTON
+        ========================= */
+
+        .button-area {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            background: #d9b85b;
+            color: #071a13;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #06150f;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        footer .arabic {
+            color: #d9b85b;
+            font-size: 25px;
+        }
+
+        footer p {
+            color: #aebbb4;
+            margin-top: 10px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            nav {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .values {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 70px 6%;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            header {
+                height: auto;
+                min-height: 70px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            nav {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+    <div class="logo">
+        Mawahib <span>Al-Manan</span>
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a href="ecole.html" class="active">
+            L'école
+        </a>
+
+        <a href="cours.html">
+            Cours
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="arabic">
+            دار القرآن والحديث
+        </div>
+
+        <h1>
+            Notre <span>école</span>
+        </h1>
+
+        <p>
+            Bienvenue à Mawahib Al-Manan,
+            une école dédiée à l'apprentissage
+            du Saint Coran, du Hadith et des
+            valeurs islamiques.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PRESENTATION
+========================= -->
+
+<section class="section">
+
+    <div class="section-content">
+
+        <h2>
+            À propos de <span>Mawahib Al-Manan</span>
+        </h2>
+
+        <p>
+            Mawahib Al-Manan est une école coranique
+            qui accompagne les élèves dans leur
+            apprentissage du Saint Coran et des
+            sciences islamiques.
+        </p>
+
+        <p>
+            Notre objectif est de proposer un cadre
+            sérieux, éducatif et bienveillant permettant
+            à chacun de progresser à son rythme.
+        </p>
+
+        <p>
+            L'apprentissage ne se limite pas à la
+            mémorisation : nous souhaitons également
+            transmettre les bonnes valeurs, le respect,
+            la discipline et l'amour de la connaissance.
+        </p>
+
+
+        <!-- =========================
+             DOMAINES
+        ========================= -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icon">
+                    📖
+                </div>
+
+                <h3>
+                    Le Coran
+                </h3>
+
+                <p>
+                    Lecture, récitation et mémorisation
+                    du Saint Coran.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🕌
+                </div>
+
+                <h3>
+                    Le Hadith
+                </h3>
+
+                <p>
+                    Découverte et étude des enseignements
+                    prophétiques.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icon">
+                    🌙
+                </div>
+
+                <h3>
+                    Sciences islamiques
+                </h3>
+
+                <p>
+                    Apprentissage progressif des
+                    connaissances islamiques.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             VALEURS
+        ========================= -->
+
+        <h2 style="margin-top:90px;">
+            Nos <span>valeurs</span>
+        </h2>
+
+        <div class="values">
+
+            <div class="value">
+
+                <h3>
+                    📚 La connaissance
+                </h3>
+
+                <p>
+                    Encourager l'apprentissage et
+                    la recherche de la connaissance.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <h3>
+                    🤝 Le respect
+                </h3>
+
+                <p>
+                    Cultiver le respect envers les
+                    enseignants, les parents et les élèves.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <h3>
+                    ⭐ La discipline
+                </h3>
+
+                <p>
+                    Développer la régularité et
+                    l'engagement dans l'apprentissage.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <h3>
+                    ❤️ La bienveillance
+                </h3>
+
+                <p>
+                    Créer un environnement accueillant
+                    et respectueux pour tous.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             BOUTON
+        ========================= -->
+
+        <div class="button-area">
+
+            <a href="cours.html" class="btn">
+                Découvrir nos cours →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="arabic">
+        جمعية مواهب المنان
+    </div>
+
+    <p>
+        دار القرآن والحديث — عين العودة
+    </p>
+
+    <p>
+        © 2026 Mawahib Al-Manan
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+```
