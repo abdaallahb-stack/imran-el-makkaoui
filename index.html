@@ -1,1 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Mawahib Al-Manan | École Coranique</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f1e8;
+            color: #183b2b;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #176b45;
+        }
+
+        .logo span {
+            color: #c59b35;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #183b2b;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #c59b35;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            padding: 130px 8% 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: #dcefe3;
+            border-radius: 50%;
+            top: -120px;
+            right: -100px;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #f1dfad;
+            border-radius: 50%;
+            bottom: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: #e4f2e8;
+            color: #176b45;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1;
+            margin-bottom: 20px;
+            color: #123d29;
+        }
+
+        h1 span {
+            color: #c59b35;
+        }
+
+        .arabic {
+            font-size: 35px;
+            color: #176b45;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #526258;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #176b45;
+            color: white;
+            box-shadow: 0 7px 20px rgba(23,107,69,0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            background: #0e5032;
+        }
+
+        .btn-secondary {
+            border: 2px solid #c59b35;
+            color: #8b6a20;
+            background: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ANIME BOOK */
+        .hero-image {
+            width: 420px;
+            height: 500px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle {
+            width: 350px;
+            height: 350px;
+            background: #176b45;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 15px 15px 0 #c59b35;
+        }
+
+        .book {
+            width: 260px;
+            height: 190px;
+            background: #f8f4e8;
+            border: 7px solid #c59b35;
+            border-radius: 15px;
+            transform: rotate(-8deg);
+            position: relative;
+            z-index: 3;
+            box-shadow: 8px 12px 0 rgba(0,0,0,0.15);
+        }
+
+        .book::before {
+            content: "القرآن الكريم";
+            position: absolute;
+            inset: 30px 20px;
+            border: 2px solid #c59b35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #176b45;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .star {
+            position: absolute;
+            color: #f7df91;
+            font-size: 35px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .star1 {
+            top: 40px;
+            right: 20px;
+        }
+
+        .star2 {
+            bottom: 70px;
+            left: 20px;
+            animation-delay: 1s;
+        }
+
+        .star3 {
+            top: 130px;
+            left: 5px;
+            font-size: 22px;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 90px 8%;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #123d29;
+        }
+
+        .section h2 span {
+            color: #c59b35;
+        }
+
+        .section-intro {
+            max-width: 650px;
+            margin: auto;
+            color: #66736a;
+            line-height: 1.7;
+        }
+
+        .cards {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            transition: 0.3s;
+            border-bottom: 5px solid #c59b35;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            color: #176b45;
+        }
+
+        .card p {
+            color: #68746c;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #123d29;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer .arabic-footer {
+            font-size: 25px;
+            color: #e7c866;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: #d6e0da;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 850px) {
+
+            header {
+                padding: 15px 5%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                text-align: center;
+                flex-direction: column;
+                padding-top: 120px;
+            }
+
+            .hero-text {
+                max-width: 100%;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 380px;
+                transform: scale(0.8);
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 70px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+
+        <div class="logo">
+            Mawahib <span>Al-Manan</span>
+        </div>
+
+        <nav>
+            <a href="#">Accueil</a>
+            <a href="#ecole">L'école</a>
+            <a href="#cours">Cours</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <div class="badge">
+                🌙 École Coranique
+            </div>
+
+            <div class="arabic">
+                دار القرآن والحديث
+            </div>
+
+            <h1>
+                Mawahib<br>
+                <span>Al-Manan</span>
+            </h1>
+
+            <p>
+                Bienvenue à l'école coranique Mawahib Al-Manan.
+                Un espace dédié à l'apprentissage du Coran,
+                du Hadith et aux valeurs islamiques dans un
+                environnement éducatif et bienveillant.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#cours" class="btn btn-primary">
+                    Découvrir nos cours
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    Nous contacter
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ILLUSTRATION STYLE MANGA -->
+        <div class="hero-image">
+
+            <div class="circle"></div>
+
+            <div class="book"></div>
+
+            <div class="star star1">✦</div>
+            <div class="star star2">✦</div>
+            <div class="star star3">✧</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRESENTATION -->
+    <section class="section" id="ecole">
+
+        <h2>
+            Notre <span>école</span>
+        </h2>
+
+        <p class="section-intro">
+            Mawahib Al-Manan accompagne les élèves dans leur
+            apprentissage du Coran et des sciences islamiques,
+            avec une approche éducative adaptée aux différents
+            niveaux.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="card-icon">📖</div>
+
+                <h3>Apprentissage du Coran</h3>
+
+                <p>
+                    Mémorisation, récitation et amélioration
+                    de la lecture du Saint Coran.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">🌙</div>
+
+                <h3>Sciences islamiques</h3>
+
+                <p>
+                    Découverte du Hadith, de la Sîra et
+                    des enseignements islamiques.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-icon">⭐</div>
+
+                <h3>Éducation & valeurs</h3>
+
+                <p>
+                    Développer la connaissance, le respect,
+                    la discipline et les bonnes valeurs.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- COURS -->
+    <section class="section" id="cours">
+
+        <h2>
+            Nos <span>cours</span>
+        </h2>
+
+        <p class="section-intro">
+            Des programmes adaptés aux enfants et aux adultes.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>Coran</h3>
+                <p>
+                    Lecture, tajwid et mémorisation.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🕌</div>
+                <h3>Hadith</h3>
+                <p>
+                    Étude et compréhension des enseignements
+                    prophétiques.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>Sîra</h3>
+                <p>
+                    Découverte de la vie du Prophète ﷺ.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+
+        <h2>
+            Rejoignez <span>nous</span>
+        </h2>
+
+        <p class="section-intro">
+            Pour connaître les horaires, les inscriptions
+            et les programmes disponibles, contactez
+            l'association Mawahib Al-Manan.
+        </p>
+
+        <br>
+
+        <a href="#" class="btn btn-primary">
+            📞 Nous contacter
+        </a>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="arabic-footer">
+            جمعية مواهب المنان
+        </div>
+
+        <p>
+            دار القرآن والحديث – عين العودة
+        </p>
+
+        <br>
+
+        <p>
+            © 2026 Mawahib Al-Manan — Tous droits réservés.
+        </p>
+
+    </footer>
+
+</body>
+</html>
